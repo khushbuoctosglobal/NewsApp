@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_xx"
+        tools:context=".fragments.HomeFragment">
+
+        <!--search / notification-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/margin_x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_edt"
+                android:drawableRight="@drawable/ic_action_search"
+                android:elevation="@dimen/elevation"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:paddingTop="@dimen/padding_txt"
+                android:paddingBottom="@dimen/padding_txt"
+                android:paddingStart="@dimen/padding_xxx"
+                android:paddingEnd="@dimen/padding_xxx"
+                android:layout_marginEnd="@dimen/margin_xx"
+                android:layout_marginBottom="@dimen/margin_x"
+                android:layout_weight="6"
+                android:hint="@string/search"
+                android:textSize="@dimen/txt_xx"
+                android:inputType="text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNotification"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:icon="@drawable/ic_action_notification"
+                app:iconSize="24dp"
+                app:iconGravity="textStart"
+                android:padding="0dp"
+                app:iconPadding="0dp"
+                android:insetTop="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+        </LinearLayout>
+
+        <!--text latest news and see more-->
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+            <TextView
+                android:id="@+id/txtLatestNews"
+                style="@style/text_style"
+                android:textColor="@color/black"
+                android:fontFamily="@font/playfair"
+                android:textStyle="bold"
+                android:text="@string/latest_news" />
+
+            <TextView
+                android:id="@+id/txtALlNews"
+                style="@style/text_style"
+                android:layout_width="match_parent"
+                android:text="@string/see_all"
+                android:textSize="@dimen/txt_xx"
+                android:textColor="@color/secondary"
+                android:fontFamily="@font/playfair"
+                android:gravity="end|bottom"
+                android:drawablePadding="10dp"
+                app:drawableEndCompat="@drawable/ic_action_arroe_right" />
+
+        </LinearLayout>
+
+        <!--recyclerview of latest news-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLatestNews"
+            style="@style/RecyclerViewStyle"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:listitem="@layout/latest_news_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout2"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpLatestNews"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout2"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vpLatestNews">
+
+            <!--list of news category-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoryList"
+                style="@style/RecyclerViewStyle"
+                tools:listitem="@layout/category_item_news_layout"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"/>
+
+            <!--recyclerview of news category-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoryNews"
+                style="@style/RecyclerViewStyle"
+                tools:listitem="@layout/category_news_layout"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

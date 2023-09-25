@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_x">
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="category"
+        android:textColor="@color/maroon"
+        android:fontFamily="@font/playfair"
+        android:paddingTop="@dimen/padding_txt"
+        android:paddingBottom="@dimen/padding_txt"
+        android:paddingStart="@dimen/padding_xxx"
+        android:paddingEnd="@dimen/padding_xxx"/>
+
+</RelativeLayout>
