@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,6 +26,7 @@ import com.example.newsapp.model.Article
 import com.example.newsapp.model.CategoryList
 import com.example.newsapp.ui.NewsDetailActivity
 import com.example.newsapp.viewmodel.NewsViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Math.abs
 import java.util.Locale
@@ -88,6 +90,14 @@ class HomeFragment : Fragment()  {
             }
         })
 
+        binding.btnNotification.setOnClickListener {
+            val dialog = activity?.let { it1 -> BottomSheetDialog(it1) }
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_filter, null)
+
+            dialog?.setCancelable(false)
+            dialog?.setContentView(view)
+            dialog?.show()
+        }
 
         selectedCategory = categoryListAdapter.getSelectedItem()
         if (selectedCategory != null) {
@@ -146,8 +156,6 @@ class HomeFragment : Fragment()  {
                 startActivity(intent)
             }
         }
-        //view pager
-
 
         val pageTransformer = ViewPager2.PageTransformer { page, position ->
             val offset = resources.getDimensionPixelOffset(R.dimen.margin_x)

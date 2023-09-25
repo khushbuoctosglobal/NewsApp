@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x">
+
+            <TextView
+                android:id="@+id/txtFilter"
+                style="@style/text_style"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@string/filter" />
+
+            <TextView
+                android:id="@+id/tvReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Reset"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_action_search"
+                android:layout_marginTop="@dimen/margin_x"
+                android:background="@drawable/circular_txt"
+                android:paddingTop="@dimen/padding_txt"
+                android:paddingBottom="@dimen/padding_txt"
+                android:paddingStart="@dimen/padding_xxx"
+                android:paddingEnd="@dimen/padding_xxx"/>
+
+        <TextView
+            android:id="@+id/txtsortBy"
+            style="@style/text_style"
+            android:layout_margin="@dimen/margin_x"
+            android:textSize="@dimen/txt_xx"
+            android:textColor="@color/black"
+            android:text="Sort By"
+            android:layout_below="@id/txtFilter"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

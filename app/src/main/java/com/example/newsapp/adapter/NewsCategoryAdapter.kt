@@ -43,6 +43,7 @@ class NewsCategoryAdapter :
             itemClickListener?.onItemClick(item)
         }
     }
+
     fun updateList(newList: List<Article>) {
         submitList(newList)
     }
