@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.SeeAllNews">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/margin_xx"
+            app:icon="@drawable/baseline_arrow_back_24"
+            app:iconSize="15dp"
+            app:iconGravity="textStart"
+            android:padding="0dp"
+            app:iconPadding="0dp"
+            android:insetTop="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="@color/light_gray_alpha"
+            app:iconTint="@color/black"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/txtLatestNews"
+            style="@style/text_style"
+            android:textColor="@color/black"
+            android:fontFamily="@font/playfair"
+            android:layout_marginTop="@dimen/margin_x"
+            android:textStyle="bold"
+            android:text="@string/see_all"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- RecyclerView of all latest news -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAllNews"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_x"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/txtLatestNews"
+            tools:listitem="@layout/category_news_layout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

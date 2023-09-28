@@ -3,19 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_xx"
-        tools:context=".fragments.HomeFragment">
+        tools:context=".ui.SearchActivity">
 
-        <!--Linear layout for search / notification-->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="@dimen/margin_x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -25,7 +29,6 @@
                 android:background="@drawable/circular_edt"
                 android:drawableRight="@drawable/ic_action_search"
                 android:elevation="@dimen/elevation"
-                android:focusable="false"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
                 android:paddingTop="@dimen/padding_txt"
@@ -56,87 +59,76 @@
 
         </LinearLayout>
 
-        <!--text latest news and see more-->
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_margin="@dimen/margin_x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
             <TextView
-                android:id="@+id/txtLatestNews"
-                style="@style/text_style"
-                android:textColor="@color/black"
+                android:id="@+id/tvfilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter"
+                android:background="@drawable/circular_txt_selected"
+                android:textColor="@color/white"
                 android:fontFamily="@font/playfair"
-                android:textStyle="bold"
-                android:text="@string/latest_news" />
+                android:paddingTop="@dimen/padding_x"
+                android:paddingBottom="@dimen/padding_x"
+                android:layout_marginTop="@dimen/margin_xx"
+                android:paddingLeft="@dimen/padding_xxx"
+                android:paddingRight="@dimen/padding_xxx" />
 
             <TextView
-                android:id="@+id/txtALlNews"
-                style="@style/text_style"
-                android:layout_width="match_parent"
-                android:text="@string/see_all"
-                android:textSize="@dimen/txt_xx"
-                android:textColor="@color/secondary"
+                android:id="@+id/tvDateFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latest"
+                android:background="@drawable/circular_txt_selected"
+                android:textColor="@color/white"
                 android:fontFamily="@font/playfair"
-                android:gravity="end|bottom"
-                android:drawablePadding="10dp"
-                app:drawableEndCompat="@drawable/ic_action_arroe_right" />
+                android:paddingTop="@dimen/padding_x"
+                android:paddingBottom="@dimen/padding_x"
+                android:layout_marginTop="@dimen/margin_xx"
+                android:layout_marginLeft="@dimen/margin_xx"
+                android:layout_marginRight="@dimen/margin_xx"
+                android:paddingLeft="@dimen/padding_xxx"
+                android:paddingRight="@dimen/padding_xxx" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--list of news category-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategoryList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_x"
+                    tools:listitem="@layout/category_item_news_layout"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <!--recyclerview of latest news-->
+        <!--recyclerview of news category-->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvLatestNews"
+            android:id="@+id/rvCategoryNews"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_x"
+            tools:listitem="@layout/category_news_layout"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:listitem="@layout/latest_news_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout2"/>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vpLatestNews"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vpLatestNews">
-
-            <!--list of news category-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategoryList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_x"
-                tools:listitem="@layout/category_item_news_layout"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"/>
-
-            <!--recyclerview of news category-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategoryNews"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_x"
-                tools:listitem="@layout/category_news_layout"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"/>
-
-        </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

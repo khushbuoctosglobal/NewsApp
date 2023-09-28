@@ -8,32 +8,22 @@
             type="com.example.newsapp.model.Article" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--set style in theme-->
+    <!--set style in theme-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             style="@style/LatestCardViewStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_x"
+            android:adjustViewBounds="true">
 
             <!--set textview style in theme-->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/ivNews"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{article.urlToImage}" />
 
@@ -56,9 +46,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|start"
+                        android:textColor="@color/black"
                         android:textAppearance="@style/LatestTextViewStyle"
-                        android:text="@{article.publishedAt}" />
-
+                        android:text="@{article.title}" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -71,16 +61,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:textAppearance="@style/LatestTextViewStyle"
-                            android:text="@{article.title}" />
+                            android:text="@{article.content}" />
 
                     </FrameLayout>
 
                 </LinearLayout>
 
-            </FrameLayout>
-
         </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.NewsApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NewsApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/white</item>
@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-    </style>
+     </style>
 
     <style name="Theme.NewsApp" parent="Base.Theme.NewsApp" />
     <style name="ImageViewStyle">
@@ -34,10 +34,12 @@
     </style>
 
     <style name="LatestTextViewStyle">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:layout_gravity">center</item>
     </style>
+
     <!--circualr button style / home fragment-->
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>
@@ -51,10 +53,11 @@
         <item name="android:textSize">@dimen/txt_xxx</item>
         <item name="android:gravity">bottom</item>
     </style>
-    <!--recyclerview style / home fragment-->
-    <style name="RecyclerViewStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_xx</item>
+    <!--custom bottom nav linear layout-->
+    <style name="CustomLinearLayoutStyle">
+        <item name="android:padding">@dimen/padding_x</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
+
 </resources>

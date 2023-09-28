@@ -16,4 +16,6 @@
     <dimen name="txt_x">8sp</dimen>
     <dimen name="txt_xx">16sp</dimen>
     <dimen name="txt_xxx">22sp</dimen>
+    
+    <dimen name="margin_pager">100dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.newsapp.adapter
+package com.example.newsapp.listners
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

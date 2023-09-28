@@ -7,16 +7,20 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.FavFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategoryNews"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="hello"
-            />
+            android:layout_marginTop="@dimen/margin_x"
+            tools:listitem="@layout/fav_news_layout"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
 </layout>

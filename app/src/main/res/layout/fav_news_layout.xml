@@ -45,6 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|start"
+                        android:layout_marginTop="@dimen/margin_xxx"
                         android:textAppearance="@style/LatestTextViewStyle"
                         android:text="@{category.title}" />
 
@@ -79,6 +80,15 @@
                     </FrameLayout>
 
                 </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnRemove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transperent"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:padding="@dimen/padding_x"
+                    app:tint="@color/light_gray" />
 
             </FrameLayout>
 
