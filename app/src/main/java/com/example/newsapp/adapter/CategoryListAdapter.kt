@@ -8,7 +8,7 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.CategoryItemNewsLayoutBinding
 import com.example.newsapp.model.CategoryList
 
-    class CategoryListAdapter(private val categoryList: List<CategoryList>, private val itemClickListener: ItemClickListener
+class CategoryListAdapter(private val categoryList: List<CategoryList>, private val itemClickListener: ItemClickListener
     ) : RecyclerView.Adapter<CategoryListAdapter.ItemViewHolder>() {
         private var selectedItemPosition: Int = 0
 

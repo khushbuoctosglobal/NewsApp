@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.databinding.FavNewsLayoutBinding
 import com.example.newsapp.model.Article
 
+//favorite list adapter
 class FavCategoryAdapter :
     ListAdapter<Article, FavCategoryAdapter.ViewHolder>(FavCategoryItemDiffCallback()) {
 

@@ -51,11 +51,14 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository, 
     fun fetchLatestNews(query: String) {
         viewModelScope.launch {
             when (val result = repository.getLatestNews(query)) {
+                is NewsErrorHandling.Loading -> {
+                    //success state
+                    Log.d("NewsViewModel", "generating")
+                }
                 is NewsErrorHandling.Success -> {
                     //success state
                     _news.postValue(result.data)
                 }
-
                 is NewsErrorHandling.Error -> {
                     // Handle the error state
                     Log.d("NewsViewModel", "An error occurred: ${result.message}")
@@ -66,6 +69,10 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository, 
     fun fetchCategoryNews(query: String) {
         viewModelScope.launch {
             when (val result = repository.getLatestNews(query)) {
+                is NewsErrorHandling.Loading -> {
+                    //success state
+                    Log.d("NewsViewModel", "generating")
+                }
                 is NewsErrorHandling.Success -> {
                     //success state
                     _news.postValue(result.data)
@@ -82,6 +89,10 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository, 
     fun fetchDateNews(query: String) {
         viewModelScope.launch {
             when (val result = repository.getDateNews(query)) {
+                is NewsErrorHandling.Loading -> {
+                    //success state
+                    Log.d("NewsViewModel", "generating")
+                }
                 is NewsErrorHandling.Success -> {
                     //success state
                     _news.postValue(result.data)

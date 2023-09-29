@@ -18,8 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    // NavController for handling navigation
     private lateinit var navController: NavController
 
+    // ViewModel for managing bottom navigation state
     val bottomNavigationViewModel: BottomNavigationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,41 +32,59 @@ class MainActivity : AppCompatActivity() {
 
         val customBottomNav = findViewById<FrameLayout>(R.id.customBottomNav)
 
+        // Find the navigation host fragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+        // Set the ViewModel for data binding
         binding.viewModel = bottomNavigationViewModel
 
+        // Find views for each bottom navigation item
         val itemHome = customBottomNav.findViewById<LinearLayout>(R.id.itemHome)
         val itemProfile = customBottomNav.findViewById<LinearLayout>(R.id.itemProfile)
         val itemFav = customBottomNav.findViewById<LinearLayout>(R.id.itemFav)
         val itemHomeIv = customBottomNav.findViewById<ImageView>(R.id.ivHome)
         val itemProfileIv = customBottomNav.findViewById<ImageView>(R.id.ivProfile)
         val itemFavIv = customBottomNav.findViewById<ImageView>(R.id.ivFav)
+
+        // Initialize ViewModel and select the "Home" item initially
         binding.viewModel = bottomNavigationViewModel
         bottomNavigationViewModel.selectItem("Home")
-        bottomNavigationViewModel.selectNavItemIv(itemHomeIv, listOf(itemHomeIv, itemFavIv, itemProfileIv))
+        bottomNavigationViewModel.selectNavItemIv(
+            itemHomeIv,
+            listOf(itemHomeIv, itemFavIv, itemProfileIv)
+        )
 
+        // Handle clicks on bottom navigation items
         itemHome.setOnClickListener {
             binding.viewModel = bottomNavigationViewModel
             bottomNavigationViewModel.selectItem("Home")
-            bottomNavigationViewModel.selectNavItemIv(itemHomeIv, listOf(itemHomeIv, itemFavIv, itemProfileIv))
+            bottomNavigationViewModel.selectNavItemIv(
+                itemHomeIv,
+                listOf(itemHomeIv, itemFavIv, itemProfileIv)
+            )
             navController.navigate(R.id.fragmentHome)
         }
 
         itemFav.setOnClickListener {
             binding.viewModel = bottomNavigationViewModel
             bottomNavigationViewModel.selectItem("Favorite")
-            bottomNavigationViewModel.selectNavItemIv(itemFavIv, listOf(itemHomeIv, itemFavIv, itemProfileIv))
+            bottomNavigationViewModel.selectNavItemIv(
+                itemFavIv,
+                listOf(itemHomeIv, itemFavIv, itemProfileIv)
+            )
             navController.navigate(R.id.fragmentFav)
         }
 
         itemProfile.setOnClickListener {
             binding.viewModel = bottomNavigationViewModel
             bottomNavigationViewModel.selectItem("Profile")
-            bottomNavigationViewModel.selectNavItemIv(itemProfileIv, listOf(itemHomeIv, itemFavIv, itemProfileIv))
+            bottomNavigationViewModel.selectNavItemIv(
+                itemProfileIv,
+                listOf(itemHomeIv, itemFavIv, itemProfileIv)
+            )
             navController.navigate(R.id.fragmentProfile)
         }
     }
-
 }

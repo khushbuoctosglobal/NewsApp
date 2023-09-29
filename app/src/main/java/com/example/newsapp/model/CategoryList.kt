@@ -1,4 +1,4 @@
 package com.example.newsapp.model
 
-/*category name data class*/
+/*category list data class - Eg.Science,Business,Technology, etc..*/
 data class CategoryList(val category: String)

@@ -40,7 +40,7 @@
             android:insetLeft="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:backgroundTint="@color/light_gray_alpha"
+            android:backgroundTint="@color/light_gray_alpha3"
             app:iconTint="@color/black"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 style="@style/LatestCardViewStyle"
-                android:backgroundTint="@color/light_gray"
+                app:cardBackgroundColor="@color/transperent"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="@dimen/margin_xxx"
@@ -60,38 +60,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_xx"
-                    android:orientation="vertical">
+                    app:blurOverlayColor="@color/light_gray_alpha">
 
-                    <TextView
-                        android:id="@+id/tvTitle"
-                        style="@style/text_style"
-                        android:fontFamily="@font/playfair"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/txt_xx"
-                        android:text="@string/date" />
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_xx"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvAuthor"
-                        style="@style/text_style"
-                        android:fontFamily="@font/playfair"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/txt_xx"
-                        android:text="@string/author" />
+                        <TextView
+                            android:id="@+id/tvTitle"
+                            style="@style/text_style"
+                            android:fontFamily="@font/playfair"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/txt_xx"
+                            android:text="@string/date" />
 
-                    <TextView
-                        android:id="@+id/tvDate"
-                        style="@style/text_style"
-                        android:fontFamily="@font/playfair"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/txt_xx"
-                        android:text= "Publish at -  " />
+                        <TextView
+                            android:id="@+id/tvAuthor"
+                            style="@style/text_style"
+                            android:fontFamily="@font/playfair"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/txt_xx"
+                            android:text="@string/author" />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvDate"
+                            style="@style/text_style"
+                            android:fontFamily="@font/playfair"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/txt_xx"
+                            android:text= "Publish at -  " />
+
+                            <!--Any child View here, TabLayout for example. This View will NOT be blurred -->
+
+                    </LinearLayout>
+
+                </eightbitlab.com.blurview.BlurView>
 
             </androidx.cardview.widget.CardView>
 

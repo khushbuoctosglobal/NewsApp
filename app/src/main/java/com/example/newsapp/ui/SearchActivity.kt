@@ -37,7 +37,7 @@ class SearchActivity : AppCompatActivity() {
     private val searchViewModel: SearchViewModel by viewModels()
 
     // News vise Category Adapter
-    private val newsCategoryAdapter = NewsCategoryAdapter()
+    private var newsCategoryAdapter = NewsCategoryAdapter()
 
     // Category Adapter
     private lateinit var categoryListAdapter: CategoryListAdapter
@@ -63,11 +63,11 @@ class SearchActivity : AppCompatActivity() {
             }
         })
 
-        //select category item bg color
+        //select category news list value set
         selectedCategory = categoryListAdapter.getSelectedItem()
         if (selectedCategory != null) {
             val selectedItemName = selectedCategory!!.category
-            viewModel.processIntent(NewsIntent.LoadCategoryNews(selectedItemName))
+            loadCategoryNews(selectedItemName)
         } else {
             // No item is selected
         }
@@ -78,9 +78,10 @@ class SearchActivity : AppCompatActivity() {
         // Initialize SearchViewModel with initial data
         viewModel.news.observe(this@SearchActivity, Observer { newsItems ->
             if (newsItems != null) {
+                newsCategoryAdapter = NewsCategoryAdapter()
                 articles = newsItems.articles as List<Article>
-                newsCategoryAdapter.submitList(newsItems.articles)
-                searchViewModel.setInitialData(articles)
+                newsCategoryAdapter.submitList(articles)
+                binding.rvCategoryNews.adapter = newsCategoryAdapter
             }
         })
 
@@ -97,9 +98,6 @@ class SearchActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-        //recyclerview news
-        binding.rvCategoryNews.adapter = newsCategoryAdapter
 
         //filter bottom sheet
         binding.tvfilter.setOnClickListener {
@@ -134,7 +132,10 @@ class SearchActivity : AppCompatActivity() {
                         else -> articles
                     }
 
-                    newsCategoryAdapter.updateList(sortedArticles)
+                    newsCategoryAdapter = NewsCategoryAdapter()
+                    newsCategoryAdapter.submitList(sortedArticles)
+                    binding.rvCategoryNews.adapter = newsCategoryAdapter
+
                     dialog.dismiss()
                 }
             }
@@ -162,7 +163,11 @@ class SearchActivity : AppCompatActivity() {
 
         // Observe the SearchViewModel state and update the filtered list
         searchViewModel.state.observe(this, Observer { state ->
-            newsCategoryAdapter.updateList(state.filteredList)
+            newsCategoryAdapter.submitList(state.filteredList)
+            binding.rvCategoryNews.isNestedScrollingEnabled = false
         })
+    }
+    private fun loadCategoryNews(query: String) {
+        viewModel.processIntent(NewsIntent.LoadCategoryNews(query))
     }
 }

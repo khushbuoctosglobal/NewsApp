@@ -6,6 +6,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+//date-adapter for data binding - convert date
 object DateConversion {
     @JvmStatic
     @BindingAdapter("formattedDate")

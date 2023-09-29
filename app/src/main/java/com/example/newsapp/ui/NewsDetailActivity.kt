@@ -1,8 +1,10 @@
 package com.example.newsapp.ui
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.widget.FrameLayout
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,12 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityNewsDetailBinding
-import com.example.newsapp.intent.NewsDetailViewState
 import com.example.newsapp.model.Article
 import com.example.newsapp.viewmodel.ArticleExistsCallback
 import com.example.newsapp.viewmodel.NewsDetailViewModel
+import com.example.newsapp.viewmodel.NewsDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.blurry.Blurry
+import eightbitlab.com.blurview.RenderScriptBlur
 import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
@@ -31,14 +33,13 @@ class NewsDetailActivity : AppCompatActivity(), ArticleExistsCallback {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news_detail)
 
-
-        // Use a CoroutineScope for collecting StateFlow
+       // Use a CoroutineScope for collecting StateFlow
         lifecycleScope.launch {
             viewModel.viewState.collect { state ->
                 render(state)
             }
         }
-
+        blur()
         // Initialize the ViewModel with data from the intent
         val receivedArticle: Article? = intent.getParcelableExtra("article")
 
@@ -77,9 +78,9 @@ class NewsDetailActivity : AppCompatActivity(), ArticleExistsCallback {
     }
 
     private fun render(state: NewsDetailViewState) {
-      /*  binding.tvAuthor.text = state.author
+        binding.tvAuthor.text = state.author
         binding.tvDate.text = state.formattedDate
-        binding.tvTitle.text = state.title*/
+        binding.tvTitle.text = state.title
         binding.tvNewsDetails.text = state.content
 
         Glide.with(this)
@@ -100,5 +101,17 @@ class NewsDetailActivity : AppCompatActivity(), ArticleExistsCallback {
             exists_ = false
             binding.ivFav.setImageResource(R.drawable.ic_fluent_heart_24_regular)
         }
+    }
+
+    private fun blur() {
+        val radius = 20f;
+        val decorView :View = window.decorView;
+        val rootView :ViewGroup = decorView.findViewById(android.R.id.content);
+
+        val windowBackground: Drawable = decorView.background;
+
+        binding.blurView.setupWith(rootView, RenderScriptBlur(this))
+            .setFrameClearDrawable(windowBackground)
+            .setBlurRadius(radius)
     }
 }

@@ -87,19 +87,6 @@
 
         </LinearLayout>
 
-        <!--recyclerview of latest news-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvLatestNews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_x"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:listitem="@layout/latest_news_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout2"/>
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpLatestNews"
             android:layout_width="match_parent"

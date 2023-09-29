@@ -1,8 +1,8 @@
 package com.example.newsapp.auth
 
-import com.example.newsapp.model.Article
-
+//handel error state Request and response
 sealed class NewsErrorHandling <out T : Any>  {
-       data class Success<out T : Any>(val data: T) : NewsErrorHandling<T>()
-        data class Error(val message: String? = null) : NewsErrorHandling<Nothing>()
+    object Loading : NewsErrorHandling<Nothing>()
+    data class Success<out T : Any>(val data: T) : NewsErrorHandling<T>()
+    data class Error(val message: String? = null) : NewsErrorHandling<Nothing>()
 }

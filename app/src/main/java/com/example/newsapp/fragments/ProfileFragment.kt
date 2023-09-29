@@ -19,10 +19,6 @@ class ProfileFragment : Fragment() {
             inflater, R.layout.fragment_profile, container, false
         )
 
-        // You can interact with UI elements and bind data here
-        // For example:
-        //binding.textViewTitle.text = "Welcome to the Profile Fragment"
-
         return binding.root
     }
 }

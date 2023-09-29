@@ -17,9 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavFragment : Fragment() {
-
     private lateinit var binding: FragmentFavBinding
 
+    // View Model for managing favorite articles
     private val viewModel: FavViewModel by viewModels()
     private val favCategoryAdapter = FavCategoryAdapter()
 
@@ -27,7 +27,8 @@ class FavFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= DataBindingUtil.inflate(
+        // Initialize data binding
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_fav, container, false
         )
         return binding.root
@@ -36,22 +37,20 @@ class FavFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set up the RecyclerView with the favorite news adapter
         binding.rvCategoryNews.adapter = favCategoryAdapter
 
+        // Observe changes in the list of favorite news and update the adapter
         viewModel.allArticles.observe(viewLifecycleOwner) { articles ->
             favCategoryAdapter.submitList(articles)
         }
-        favCategoryAdapter.submitList(viewModel.allArticles.value)
 
+        // Set click listener for the remove button in the favorite articles adapter
         favCategoryAdapter.itemClickListener = object : FavCategoryAdapter.ItemClickListener {
             override fun onRemoveClick(article: Article) {
                 // Handle item removal from the database
                 viewModel.deleteArticleById(article.title ?: "")
-                viewModel.categoryNews.observe(viewLifecycleOwner, Observer { categoryNews ->
-                    favCategoryAdapter.submitList(categoryNews)
-                })
             }
         }
-
     }
 }

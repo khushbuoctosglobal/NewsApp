@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.databinding.CategoryNewsLayoutBinding
 import com.example.newsapp.model.Article
 
+//category vise news - adapter
 class NewsCategoryAdapter :
     ListAdapter<Article, NewsCategoryAdapter.ViewHolder>(NewsCategoryItemDiffCallback()) {
 
@@ -42,10 +43,6 @@ class NewsCategoryAdapter :
         holder.itemView.setOnClickListener {
             itemClickListener?.onItemClick(item)
         }
-    }
-
-    fun updateList(newList: List<Article>) {
-        submitList(newList)
     }
 }
 
